@@ -53,10 +53,7 @@ func initConfig() {
 		home, err := os.UserHomeDir()
 		cobra.CheckErr(err)
 
-		viper.AddConfigPath(home)
-		viper.AddConfigPath(".")
-		viper.SetConfigType("yaml")
-		viper.SetConfigFile(".tetengger")
+		viper.SetConfigFile(fmt.Sprintf("%s/.tetengger.yaml", home))
 	}
 
 	viper.AutomaticEnv()
