@@ -13,7 +13,7 @@ Many services are available to solve this problem (i.e. [Instapaper](https://www
 
 ## tetengger-cli
 
-tetengger-cli is CLI tool that everyone can use to save (i.e bookmark) any content from the web with free to their GitHub repository.
+tetengger-cli is CLI tool that everyone can use to save (i.e bookmark) any content from the web for free to their GitHub repository in markdown format.
 
 ### Prerequisites
 In order to use this CLI, you need to have GitHub account, Github repository that you want to use to store the content and also the GitHub token to interact with the API.
@@ -46,10 +46,18 @@ Available Commands:
 Flags:
   -c, --config string       config file (default is $HOME/.tetengger.yaml)
   -h, --help                help for tetengger
-  -r, --repository string   The Github repository that will be used to store the content.
+  -r, --repository string   the Github repository that will be used to store the content.
       --token string        the GitHub token to authenticate and authorize tetengger with the GitHub account.
   -u, --username string     the GitHub username used to store the content.
   -v, --version             version for tetengger
 
 Use "tetengger [command] --help" for more information about a command.
 ```
+
+## Github Pages
+
+You maybe realized or have question that how to search the saved content easily because it's stored in GitHub repository? Well, the answer is you can use GitHub pages for free to store the content.
+
+As by now, `tetengger` doesn't have specific built-in Github Pages. It's already in the author roadmap but the author currently doesn't have enough time to do it :(
+
+But in the meantime, you can freely use `tetengger-cli` to save the content to your own GitHub pages. For example, the author is hosting his second brain using [quartz](https://github.com/jackyzha0/quartz) as the GitHub pages and save every content from `tetengger-cli` to that repository. You can find more details [here](https://github.com/irfansofyana/MySecondBrain/tree/hugo/content/bookmark).
