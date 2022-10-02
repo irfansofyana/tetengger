@@ -94,5 +94,5 @@ func buildGithubClient() *github.Client {
 }
 
 func buildContentPath(domain, name string) string {
-	return fmt.Sprintf("%s/%s/%s", viper.GetString("folder"), domain, name)
+	return fmt.Sprintf("%s/%s/%s.md", viper.GetString("folder"), domain, name)
 }
