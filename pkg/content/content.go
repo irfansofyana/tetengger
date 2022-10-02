@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+	"strings"
 
 	md "github.com/JohannesKaufmann/html-to-markdown"
 	"github.com/google/go-github/github"
@@ -23,6 +24,8 @@ func Save(url string, name string) {
 	repo := viper.GetString("repository")
 	branch := viper.GetString("branch")
 	commit := viper.GetString("commit")
+
+	content = addMetadata(content, name)
 
 	opt := &github.RepositoryContentFileOptions{
 		Message: &commit,
@@ -59,6 +62,27 @@ func getWebContent(webURL string) (markdown []byte, domain string, err error) {
 
 	markdown = []byte(markdownStr)
 	return
+}
+
+func addMetadata(content []byte, name string) []byte {
+	strContent := string(content)
+
+	updatedContent := fmt.Sprintf("%s\n%s", buildMetadata(name), strContent)
+
+	return []byte(updatedContent)
+}
+
+func buildMetadata(name string) string {
+	var metaData string = fmt.Sprintf("---\ntitle: \"%s\"\ntags:", name)
+
+	tags := strings.Split(viper.GetString("tags"), ",")
+	for _, tag := range tags {
+		metaData = fmt.Sprintf("%s\n- %s", metaData, tag)
+	}
+
+	metaData = fmt.Sprintf("%s\n---\n", metaData)
+
+	return metaData
 }
 
 func buildGithubClient() *github.Client {

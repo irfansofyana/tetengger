@@ -13,6 +13,7 @@ var (
 	commit string
 	folder string
 	branch string
+	tags   string
 
 	saveCmd = &cobra.Command{
 		Use:   "save",
@@ -40,10 +41,12 @@ func init() {
 	saveCmd.PersistentFlags().StringVarP(&commit, "commit", "m", "save a new content", "the commit message that will be add when save the content to the Github repository.")
 	saveCmd.PersistentFlags().StringVarP(&folder, "folder", "f", "bookmark", "the parent folder that will be used to store the content in the GitHub repository.")
 	saveCmd.PersistentFlags().StringVarP(&branch, "branch", "b", "main", "the GitHub branch where the content will be saved.")
+	saveCmd.PersistentFlags().StringVarP(&tags, "tags", "t", "", "tags of the content (comma separated values)")
 
 	viper.BindPFlag("commit", saveCmd.PersistentFlags().Lookup("commit"))
 	viper.BindPFlag("folder", saveCmd.PersistentFlags().Lookup("folder"))
 	viper.BindPFlag("branch", saveCmd.PersistentFlags().Lookup("branch"))
+	viper.BindPFlag("tags", saveCmd.PersistentFlags().Lookup("tags"))
 }
 
 func saveConfig() {

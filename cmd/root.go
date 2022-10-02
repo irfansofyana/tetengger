@@ -20,7 +20,7 @@ var (
 		Long: `Tetengger (adapted from Sundanese which means marker) 
 		is a CLI tool that everyone can use to save (i.e bookmark) any content from the web 
 		with free to their GitHub repository`,
-		Version:       "0.1.0",
+		Version:       "0.2.0",
 		SilenceErrors: true,
 		SilenceUsage:  true,
 	}
@@ -35,7 +35,7 @@ func init() {
 
 	ttCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $HOME/.tetengger.yaml)")
 	ttCmd.PersistentFlags().StringVarP(&username, "username", "u", "", "the GitHub username used to store the content.")
-	ttCmd.PersistentFlags().StringVarP(&token, "token", "t", "", "the GitHub token to authenticate and authorize tetengger with the GitHub account.")
+	ttCmd.PersistentFlags().StringVar(&token, "token", "", "the GitHub token to authenticate and authorize tetengger with the GitHub account.")
 	ttCmd.PersistentFlags().StringVarP(&repository, "repository", "r", "", "The Github repository that will be used to store the content.")
 
 	viper.BindPFlag("config", ttCmd.PersistentFlags().Lookup("config"))
