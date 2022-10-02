@@ -32,6 +32,8 @@ func save(ccmd *cobra.Command, args []string) {
 	}
 
 	content.Save(args[0], args[1])
+
+	saveConfig()
 }
 
 func init() {
@@ -42,4 +44,10 @@ func init() {
 	viper.BindPFlag("commit", saveCmd.PersistentFlags().Lookup("commit"))
 	viper.BindPFlag("folder", saveCmd.PersistentFlags().Lookup("folder"))
 	viper.BindPFlag("branch", saveCmd.PersistentFlags().Lookup("branch"))
+}
+
+func saveConfig() {
+	home, err := os.UserHomeDir()
+	cobra.CheckErr(err)
+	viper.WriteConfigAs(home + "/.tetengger.yaml")
 }
