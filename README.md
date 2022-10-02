@@ -1,5 +1,5 @@
 # tetengger
-A free bookmark service powered by GitHub. 
+📑 A free bookmark service powered by GitHub. 
 
 ## Motivation
 
@@ -7,13 +7,15 @@ Nowadays, you will face a situation where you need to read and search so many th
 
 How to improve the effectiveness and the efficiency to find something that you've read? yes, you know it. You need to save or bookmark that information.
 
-Many services are available to solve this problem (i.e. [Instapaper](https://www.instapaper.com/u), [Raindrop](https://raindrop.io/), [pocket](https://getpocket.com/en/), etc...). Of course they are offering a good service,  but why I created this? the simple reason is just to save money (*lol*), make the most on the free resources, and contribute to open source :)
+Many services are available to solve this problem (i.e. [Instapaper](https://www.instapaper.com/u), [Raindrop](https://raindrop.io/), [pocket](https://getpocket.com/en/), etc...). Of course they are offering a good service,  but why I created this? the simple reason is just to save money, make the most on the free resources, and contribute to open source 😊
 
 *fun fact*: tetengger is *marker* in *sundanese* (one of the local language in Indonesia).
 
 ## tetengger-cli
 
-tetengger-cli is CLI tool that everyone can use to save (i.e bookmark) any content from the web for free to their GitHub repository in markdown format.
+`tetengger-cli` is CLI tool that everyone can use to save (i.e bookmark) any content from the web for free to their GitHub repository in markdown format.
+
+> ❗️ `tetengger-cli` is still in very early development and therefore the tool might not stable.
 
 ### Prerequisites
 In order to use this CLI, you need to have GitHub account, Github repository that you want to use to store the content and also the GitHub token to interact with the API.
@@ -58,6 +60,6 @@ Use "tetengger [command] --help" for more information about a command.
 
 You maybe realized or have question that how to search the saved content easily because it's stored in GitHub repository? Well, the answer is you can use GitHub pages for free to store the content.
 
-As by now, `tetengger` doesn't have specific built-in Github Pages. It's already in the author roadmap but the author currently doesn't have enough time to do it :(
+As by now, `tetengger` doesn't have specific built-in Github Pages. It's already in the author roadmap but the author currently doesn't have enough time to do it now 😞
 
-But in the meantime, you can freely use `tetengger-cli` to save the content to your own GitHub pages. For example, the author is hosting his second brain using [quartz](https://github.com/jackyzha0/quartz) as the GitHub pages and save every content from `tetengger-cli` to that repository. You can find more details [here](https://github.com/irfansofyana/MySecondBrain/tree/hugo/content/bookmark).
+But in the meantime, you can freely use `tetengger-cli` to save the content to your own GitHub pages. For example, the author is hosting [his second brain](https://irfansofyana.github.io/MySecondBrain/) using [quartz](https://github.com/jackyzha0/quartz) as the GitHub pages and save every content from `tetengger-cli` to that repository. You can find more details [here](https://github.com/irfansofyana/MySecondBrain/tree/hugo/content/bookmark).
