@@ -20,7 +20,7 @@ var (
 		Long: `Tetengger (adapted from Sundanese which means marker) 
 		is a CLI tool that everyone can use to save (i.e bookmark) any content from the web 
 		with free to their GitHub repository`,
-		Version:       "0.2.0",
+		Version:       "0.3.0",
 		SilenceErrors: true,
 		SilenceUsage:  true,
 	}

@@ -3,11 +3,13 @@ package content
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"net/url"
 	"os"
 	"strings"
 
 	md "github.com/JohannesKaufmann/html-to-markdown"
+	"github.com/go-shiori/go-readability"
 	"github.com/google/go-github/github"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -16,7 +18,7 @@ import (
 
 // Save save the content to the destination github repository
 func Save(url string, name string) {
-	content, domain, err := getWebContent(url)
+	content, domain, title, err := getWebContent(url)
 	cobra.CheckErr(err)
 
 	ghClient := buildGithubClient()
@@ -25,7 +27,7 @@ func Save(url string, name string) {
 	branch := viper.GetString("branch")
 	commit := viper.GetString("commit")
 
-	content = addMetadata(content, name)
+	content = addMetadata(content, title)
 
 	opt := &github.RepositoryContentFileOptions{
 		Message: &commit,
@@ -43,19 +45,30 @@ func Save(url string, name string) {
 	cobra.CheckErr(err)
 
 	fmt.Fprintln(os.Stdout, "Successfully save the content!")
-
 }
 
-func getWebContent(webURL string) (markdown []byte, domain string, err error) {
+func getWebContent(webURL string) (markdown []byte, domain string, title string, err error) {
 	u, err := url.Parse(webURL)
 	if err != nil {
 		return
 	}
 
 	domain = u.Hostname()
-	converter := md.NewConverter(domain, true, nil)
 
-	markdownStr, err := converter.ConvertURL(webURL)
+	resp, err := http.Get(webURL)
+	if err != nil {
+		return
+	}
+
+	article, err := readability.FromReader(resp.Body, u)
+	if err != nil {
+		return
+	}
+
+	title = article.Title
+
+	converter := md.NewConverter("", true, nil)
+	markdownStr, err := converter.ConvertString(article.Content)
 	if err != nil {
 		return
 	}
@@ -72,8 +85,8 @@ func addMetadata(content []byte, name string) []byte {
 	return []byte(updatedContent)
 }
 
-func buildMetadata(name string) string {
-	var metaData string = fmt.Sprintf("---\ntitle: \"%s\"\ntags:", name)
+func buildMetadata(title string) string {
+	var metaData string = fmt.Sprintf("---\ntitle: \"%s\"\ntags:", title)
 
 	tags := strings.Split(viper.GetString("tags"), ",")
 	for _, tag := range tags {
