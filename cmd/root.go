@@ -36,7 +36,7 @@ func init() {
 	ttCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $HOME/.tetengger.yaml)")
 	ttCmd.PersistentFlags().StringVarP(&username, "username", "u", "", "the GitHub username used to store the content.")
 	ttCmd.PersistentFlags().StringVar(&token, "token", "", "the GitHub token to authenticate and authorize tetengger with the GitHub account.")
-	ttCmd.PersistentFlags().StringVarP(&repository, "repository", "r", "", "The Github repository that will be used to store the content.")
+	ttCmd.PersistentFlags().StringVarP(&repository, "repository", "r", "", "the Github repository that will be used to store the content.")
 
 	viper.BindPFlag("config", ttCmd.PersistentFlags().Lookup("config"))
 	viper.BindPFlag("username", ttCmd.PersistentFlags().Lookup("username"))
